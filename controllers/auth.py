@@ -1,9 +1,12 @@
-from flask import Blueprint, jsonify
+from flask import Flask, jsonify
 from config.jwt_config import generate_token
 
-auth_bp = Blueprint('auth', __name__)
+app = Flask(__name__)
 
-@auth_bp.route('/login')
+@app.route('/login')
 def login():
     token = generate_token()
     return jsonify({'token': token})
+
+if __name__ == '__main__':
+    app.run(debug=True)
