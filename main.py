@@ -5,7 +5,6 @@ from config.jwt_config import token_required
 app = Flask(__name__)
 
 @app.route('/products')
-@token_required
 def listar_produtos():
     preco_asc = request.args.get('preco_asc')
     preco_desc = request.args.get('preco_desc')
@@ -23,7 +22,6 @@ def listar_produtos():
     return jsonify(lista)
 
 @app.route('/products/<int:id>')
-@token_required
 def get_produto(id):
     for produto in products:
         if produto["id"] == id:
